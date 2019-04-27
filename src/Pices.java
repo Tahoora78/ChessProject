@@ -19,7 +19,7 @@ public abstract class Pices {
         color = c;
     }
 
-    public void setX(Character z){
+    public int setX(Character z){
         switch (z){
             case('a'):
                 x = xChar.a.ordinal();
@@ -46,6 +46,7 @@ public abstract class Pices {
                 x = xChar.h.ordinal();
                 break;
         }
+        return x;
     }
 
 

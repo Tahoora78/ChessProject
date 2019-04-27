@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Ground {
     private String x;
@@ -43,9 +44,6 @@ public class Ground {
     }
 
     public void display(){
-        for(int t=0;t<=31;t++){
-            System.out.println("name"+chessPicess[t].getName()+chessPicess[t].getX()+","+chessPicess[t].getY()+"t"+t);
-        }
         int y=0;
         for(int j=1;j<=8;j++){
             for(int i=1;i<=8;i++){
@@ -66,9 +64,44 @@ public class Ground {
             System.out.print("__________________________________________________");
             System.out.println();
         }
+    }
 
+    public void move(String address){
+        System.out.println("move");
+        int t;
+        Pices p = new Queen('a',2,"white");
+        t = p.setX(address.charAt(0));
+        System.out.println(t);
+        int y = Character.getNumericValue(address.charAt(1));
+        System.out.println(chessPicess[0].getY()==y);
+        for(int i=0;i<=31;i++){
+            if(chessPicess[i].getX()==t && chessPicess[i].getY()== y){
+                chessPicess[i].setX(address.charAt(3));
+                System.out.println("x"+address.charAt(3));
+                System.out.println("lllllllllllllllllll");
+               chessPicess[i].setY(Character.getNumericValue(address.charAt(4)));
+                System.out.println("y"+Character.getNumericValue(address.charAt(4)));
+            }
+        }
 
+    }
 
+    public void moving(){
+        Scanner input = new Scanner(System.in);
+        String finish = "no";
+        String voroodi;
+        while(finish!="yes"){
+            System.out.println("white turn");
+            voroodi = input.next();
+            System.out.println(voroodi);
+            move(voroodi);
+            System.out.println("black turn");
+            voroodi = input.next();
+            System.out.println(voroodi);
+            move(voroodi);
+            display();
+            finish = "yes";
+        }
     }
 
 
