@@ -1,6 +1,16 @@
 public class King extends Pices {
-    private int x;
-    private int y;
+    public String name = "King";
+
+    @Override
+    public String getName(){
+        return name;
+    }
+
+    public King(Character d,int r,String g){
+        super.setX(d);
+        super.setY(r);
+        super.setColor(g);
+    }
 
     public void setX(char t){
         super.setX(t);
@@ -14,5 +24,10 @@ public class King extends Pices {
     public void move(Character xe, int u) {
         super.move(xe, u);
     }
+
+    public void setColor(String colors){
+       super.setColor(colors);
+    }
+
 
 }

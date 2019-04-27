@@ -1,6 +1,18 @@
 public class Rook extends Pices {
-    private int x;
-    private int y;
+    private int num;
+    private String name = "Rook";
+
+    @Override
+    public String getName(){
+        return name;
+    }
+
+    public Rook(Character e,int u,String h,int i){
+        super.setX(e);
+        super.setY(u);
+        super.setColor(h);
+        num = i;
+    }
 
     public void setX(char t){
         super.setX(t);
@@ -13,6 +25,10 @@ public class Rook extends Pices {
     @Override
     public void move(Character xe, int u) {
         super.move(xe, u);
+    }
+
+    public void setColor(String colors){
+        super.setColor(colors);
     }
 
 }

@@ -1,6 +1,18 @@
 public class Knight extends Pices {
-    private int x;
-    private int y;
+    private int num;
+    private String name = "Knight";
+
+    @Override
+    public String getName(){
+        return name;
+    }
+
+    public Knight(Character d,int r,String f,int y){
+        super.setX(d);
+        super.setY(r);
+        super.setColor(f);
+        num = y;
+    }
 
     public void setX(char t){
         super.setX(t);
@@ -13,6 +25,10 @@ public class Knight extends Pices {
     @Override
     public void move(Character xe, int u) {
         super.move(xe, u);
+    }
+
+    public void setColor(String colors){
+        super.setColor(colors);
     }
 
 }

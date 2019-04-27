@@ -2,8 +2,9 @@ public abstract class Pices {
     int  x;
     private int y;
     private String color;
-
+    private String name;
     public enum xChar{
+        z,
         a,
         b,
         c,
@@ -18,7 +19,7 @@ public abstract class Pices {
         color = c;
     }
 
-    public void setX(char z){
+    public void setX(Character z){
         switch (z){
             case('a'):
                 x = xChar.a.ordinal();
@@ -48,6 +49,8 @@ public abstract class Pices {
     }
 
 
+    public abstract String getName();
+
     public void setY(int u){
         y = u;
     }
@@ -57,6 +60,12 @@ public abstract class Pices {
         y = u;
     }
 
+    public int getX(){
+        return x;
+    }
 
+    public int getY(){
+        return y;
+    }
 
 }
