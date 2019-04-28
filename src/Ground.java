@@ -4,24 +4,24 @@ import java.util.Scanner;
 public class Ground {
     private String x;
     private int y;
-    Pices[] chessPicess = new Pices[33];
+    ArrayList<Pices> chessPicess = new ArrayList<>();
     public void makingChessPicess(){
-            chessPicess[0] = new Rook('a',1,"white",1);
-            chessPicess[1] = new Knight('b',1,"white",1);
-            chessPicess[2] = new Bishop('c',1,"white",1);
-            chessPicess[3] = new Queen('d',1,"white");
-            chessPicess[4] = new King('e',1,"white");
-            chessPicess[5] = new Bishop('f',1,"white",2);
-            chessPicess[6] = new Knight('g',1,"white",2);
-            chessPicess[7] = new Rook('h',1,"white",2);
-            chessPicess[8] = new Rook('a',8,"black",1);
-            chessPicess[9] = new Knight('b',8,"black",1);
-            chessPicess[10] = new Bishop('c',8,"black",1);
-            chessPicess[11] = new Queen('d',8,"black");
-            chessPicess[12] = new King('e',8,"black");
-            chessPicess[13] = new Bishop('f',8,"black",2);
-            chessPicess[14] = new Knight('g',8,"black",2);
-            chessPicess[15] = new Rook('h',8,"black",2);
+        chessPicess.add(new Rook('a',1,"black",1));
+        chessPicess.add(new Knight('b',1,"black",1));
+            chessPicess.add(new Bishop('c',1,"black",1));
+            chessPicess.add(new Queen('d',1,"black"));
+            chessPicess.add(new King('e',1,"black"));
+            chessPicess.add(new Bishop('f',1,"black",2));
+            chessPicess.add(new Knight('g',1,"black",2));
+            chessPicess.add(new Rook('h',1,"black",2));
+            chessPicess.add(new Rook('a',8,"white",1));
+            chessPicess.add(new Knight('b',8,"white",1));
+            chessPicess.add(new Bishop('c',8,"white",1));
+            chessPicess.add(new Queen('d',8,"white"));
+            chessPicess.add(new King('e',8,"white"));
+            chessPicess.add(new Bishop('f',8,"white",2));
+            chessPicess.add(new Knight('g',8,"white",2));
+            chessPicess.add(new Rook('h',8,"white",2));
         ArrayList<Character> y = new ArrayList<Character>();
         y.add('a');
         y.add('b');
@@ -33,24 +33,28 @@ public class Ground {
         y.add('h');
         int r=0;
             for(int i=16;i<=23;i++){
-                chessPicess[i] = new Pawn(y.get(r),2,"white");
+                chessPicess.add(new Pawn(y.get(r),2,"white"));
                 r++;
             }
             r=0;
             for(int i=24;i<=31;i++){
-                chessPicess[i] = new Pawn(y.get(r),7,"black");
+                chessPicess.add(new Pawn(y.get(r),7,"black"));
                 r++;
             }
+        System.out.println("size::::"+chessPicess.size());
+        System.out.println(chessPicess.get(0).getName()+"  "+chessPicess.get(31).getName()+"x:"+chessPicess.get(31).getX()+"y:"+chessPicess.get(31).getY()+"color"+chessPicess.get(31).getColor());
+           // chessPicess.add(new King(y.get(0),7,"black"));
+            //chessPicess.add(new King(y.get(0),2,"black"));
     }
 
     public void display(){
         int y=0;
-        for(int j=1;j<=8;j++){
+        for(int j=8;j>=1;j--){
             for(int i=1;i<=8;i++){
-                for(int g=0;g<=31;g++){
+                for(int g=(chessPicess.size()-1);g>=0;g--){
                     y=0;
-                    if(chessPicess[g].getX()==i && chessPicess[g].getY()==j){
-                        System.out.print("|"+chessPicess[g].getName());
+                    if(chessPicess.get(g).getX()==i && chessPicess.get(g).getY()==j){
+                        System.out.print("|"+chessPicess.get(g).getName());
                         y=1;
                         break;
                     }
@@ -67,38 +71,118 @@ public class Ground {
     }
 
     public void move(String address){
-        System.out.println("move");
-        int t;
+        Scanner input = new Scanner(System.in);
+        int x1;
         Pices p = new Queen('a',2,"white");
-        t = p.setX(address.charAt(0));
-        System.out.println(t);
-        int y = Character.getNumericValue(address.charAt(1));
-        System.out.println(chessPicess[0].getY()==y);
-        for(int i=0;i<=31;i++){
-            if(chessPicess[i].getX()==t && chessPicess[i].getY()== y){
-                chessPicess[i].setX(address.charAt(3));
-                System.out.println("x"+address.charAt(3));
-                System.out.println("lllllllllllllllllll");
-               chessPicess[i].setY(Character.getNumericValue(address.charAt(4)));
-                System.out.println("y"+Character.getNumericValue(address.charAt(4)));
+        x1 = p.setX(address.charAt(0));
+        int y1 = Character.getNumericValue(address.charAt(1));
+        int x2 = p.setX(address.charAt(3));
+        int y2 = Character.getNumericValue(address.charAt(4));
+        String name ;
+        String continues = "no";
+        for(int j=0;j<chessPicess.size();j++){
+            if(chessPicess.get(j).getX()==x1 && chessPicess.get(j).getY()==y1){
+                int dx;
+                int dy;
+                System.out.println("*********************************");
+                dx = Math.abs(x2-x1);
+                dy = Math.abs(y2-y1);
+                continues= "no";
+                name = chessPicess.get(j).getName();
+            System.out.println("name"+name+chessPicess.get(j).getY());
+                switch (name){
+                    case "Rook":
+                        if(dx!=dy && (dx==0 || dy==0)){
+                            continues = "yes";
+                        }
+                        break;
+
+                    case"Bishop":
+                        if(dx==dy){
+                            continues = "yes";
+                        }
+                        break;
+                    case "Queen":
+
+
+                        break;
+                    case "Knight":
+                        if(dx!=dy && ((dx==1 && dy==2) || (dx==2 && dy==1))){
+                            continues = "yes";
+                        }
+
+                        break;
+                    case "Pawn":
+                        System.out.println("pawn*****************");
+                        dy = y2-y1;
+                        System.out.println("dy"+dy);
+                        System.out.println("con"+continues);
+                       if(chessPicess.get(j).getFirst().equals("no") && dx==0 && (Math.abs(dy)==1 || Math.abs(dy)==2)){
+                           if(chessPicess.get(j).getColor().equals("black") && (dy<0)){
+                                continues = "yes";
+                                chessPicess.get(j).setFirst("yes");
+                           }
+                            if(chessPicess.get(j).getColor().equals("white") && (dy>0)){
+                                continues = "yes";
+                                chessPicess.get(j).setFirst("yes");
+                            }
+                       }
+                       if(chessPicess.get(j).getFirst().equals("yes") && dx==0 && Math.abs(dy)==1){
+                           if(chessPicess.get(j).getColor().equals("black") && (dy<0)){
+                               continues = "yes";
+                           }
+                           if(chessPicess.get(j).getColor().equals("white") && (dy>0)) {
+                               continues = "yes";
+                           }
+                       }
+                        break;
+                    case "King":
+                       if((dx==1 && dy==0) ||(dx==0 && dy==1) || (dy==dx && dy==1)){
+                           continues = "yes";
+                       }
+                        break;
+                }
+                break;
             }
         }
+        System.out.println("cont"+continues);
+            for(int j=0;j<chessPicess.size();j++){
+                if(chessPicess.get(j).getX() == x2 && chessPicess.get(j).getY()== y2){
+                    if(continues.equals("yes")){
+                        chessPicess.remove(j);
+                    }
+            }
+            if(continues.equals("no")){
+                System.out.println("wrong move");
+                System.out.println("try one more time");
+                String newVoroodi = input.next();
+                move(newVoroodi);
+                break;
+            }
+            break;
+            }
 
+        for(int i=0;i<chessPicess.size();i++){
+            if(chessPicess.get(i).getX()==x1 && chessPicess.get(i).getY()== y1 && continues.equals("yes") ){
+                chessPicess.get(i).setX(address.charAt(3));
+               chessPicess.get(i).setY(Character.getNumericValue(address.charAt(4)));
+            }
+        }
     }
 
     public void moving(){
         Scanner input = new Scanner(System.in);
         String finish = "no";
         String voroodi;
+        String voroodii;
         while(finish!="yes"){
             System.out.println("white turn");
             voroodi = input.next();
-            System.out.println(voroodi);
             move(voroodi);
             System.out.println("black turn");
-            voroodi = input.next();
-            System.out.println(voroodi);
-            move(voroodi);
+            voroodii = input.next();
+            move(voroodii);
+
             display();
             finish = "yes";
         }

@@ -1,5 +1,14 @@
 public class Pawn extends Pices {
     private String name = "Pawn";
+    private String first = "no";
+    @Override
+    public String getFirst(){
+        return first;
+    }
+    @Override
+    public void setFirst(String y){
+        first = y;
+    }
 
     public Pawn(Character g,int r,String d){
         super.setX(g);
@@ -30,5 +39,8 @@ public class Pawn extends Pices {
         return name;
     }
 
+    public String getColor(){
+        return super.getColor();
+    }
 
 }

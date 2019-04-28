@@ -29,5 +29,8 @@ public class King extends Pices {
        super.setColor(colors);
     }
 
+    public String getColor(){
+        return super.getColor();
+    }
 
 }

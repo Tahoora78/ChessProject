@@ -29,4 +29,8 @@ public class Queen extends Pices {
         return name;
     }
 
+    public String getColor(){
+        return super.getColor();
+    }
+
 }

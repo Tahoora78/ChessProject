@@ -3,6 +3,7 @@ public abstract class Pices {
     private int y;
     private String color;
     private String name;
+    private String first = "no";
     public enum xChar{
         z,
         a,
@@ -56,6 +57,14 @@ public abstract class Pices {
         y = u;
     }
 
+    public String getFirst(){
+        return first;
+    }
+
+    public void setFirst(String y){
+        first = y;
+    }
+
     public void move(Character xe,int u){
         setX(xe);
         y = u;
@@ -69,4 +78,7 @@ public abstract class Pices {
         return y;
     }
 
+    public String getColor(){
+        return color;
+    }
 }
