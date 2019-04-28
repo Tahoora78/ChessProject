@@ -225,6 +225,25 @@ public class Ground {
         return continues;
     }
 
+    public String checkKing(int x1,int x2,int y1,int y2,String colorChoice){
+        int dx = Math.abs(x2-x1);
+        int dy = Math.abs(y2-y1);
+        String continues = "no";
+
+        if ((dx == 1 && dy == 0) || (dx == 0 && dy == 1) || (dy == dx && dy == 1)) {
+            for(int o=0;o<chessPicess.size();o++){
+                if(chessPicess.get(o).getX()==x2 && chessPicess.get(o).getY()==y2){
+                    if(chessPicess.get(o).getColor().equals(colorChoice)){
+                    }
+                    else{
+                        continues = "yes";
+                    }
+                }
+            }
+        }
+        return continues;
+    }
+
     public String checkKnight(int x1,int x2,int y1,int y2,String colorss){
         int dx = Math.abs(x2-x1);
         int dy = Math.abs(y2-y1);
@@ -245,6 +264,37 @@ public class Ground {
             if (conts == 0) {
                 continues = "yes";
             }
+        }
+        return continues;
+    }
+
+    public String checkPawn(int x1,int x2,int y1,int y2){
+        int dy = Math.abs(y2-y1);
+        int dx = Math.abs(x2-x1);
+        String continues = "no";
+        dy = y2-y1;
+
+        System.out.println("dy"+dy);
+        System.out.println("con"+continues);
+        for(int j=0;j<chessPicess.size();j++){
+        if(chessPicess.get(j).getFirst().equals("no") && dx==0 && (Math.abs(dy)==1 || Math.abs(dy)==2)){
+            if(chessPicess.get(j).getColor().equals("black") && (dy<0)){
+                continues = "yes";
+                chessPicess.get(j).setFirst("yes");
+            }
+            if(chessPicess.get(j).getColor().equals("white") && (dy>0)){
+                continues = "yes";
+                chessPicess.get(j).setFirst("yes");
+            }
+        }
+        if(chessPicess.get(j).getFirst().equals("yes") && dx==0 && Math.abs(dy)==1){
+            if(chessPicess.get(j).getColor().equals("black") && (dy<0)){
+                continues = "yes";
+            }
+            if(chessPicess.get(j).getColor().equals("white") && (dy>0)) {
+                continues = "yes";
+            }
+        }
         }
         return continues;
     }
@@ -289,7 +339,9 @@ public class Ground {
                         case "Rook":
                             continues = checkRook(x1,x2,y1,y2);
                             break;
-
+                        case "Pawn":
+                            continues = checkPawn(x1,x2,y1,y2);
+                            break;
                         case "Bishop":
                             continues = checkBishop(x1,x2,y1,y2,colorss);
                             break;
@@ -301,23 +353,12 @@ public class Ground {
                             continues = checkKnight(x1,x2,y1,y2,colorss);
                             break;
                         case "King":
-                            if ((dx == 1 && dy == 0) || (dx == 0 && dy == 1) || (dy == dx && dy == 1)) {
-                                for(int o=0;o<chessPicess.size();o++){
-                                    if(chessPicess.get(o).getX()==x2 && chessPicess.get(o).getY()==y2){
-                                        if(chessPicess.get(o).getColor().equals(colorChoice)){
-                                        }
-                                        else{
-                                            continues = "yes";
-                                        }
-                                    }
-                                }
-                            }
+                            continues = checkKing(x1,x2,y1,y2,colorChoice);
                             break;
                     }
                     break;
                 }
             }
-            System.out.println("cont" + continues);
             for (int j = 0; j < chessPicess.size(); j++) {
                 if (chessPicess.get(j).getX() == x2 && chessPicess.get(j).getY() == y2) {
                     if (continues.equals("yes")) {
@@ -344,7 +385,8 @@ public class Ground {
                     break;
                 }
             }
-}
+    }
+
     public void moving(){
         Scanner input = new Scanner(System.in);
         String finish = "no";
