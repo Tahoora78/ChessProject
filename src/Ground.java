@@ -225,6 +225,30 @@ public class Ground {
         return continues;
     }
 
+    public String checkKnight(int x1,int x2,int y1,int y2,String colorss){
+        int dx = Math.abs(x2-x1);
+        int dy = Math.abs(y2-y1);
+        String continues = "no";
+
+        int conts = 0;
+        if (dx != dy && ((dx == 1 && dy == 2) || (dx == 2 && dy == 1))) {
+            for (int i = 0; i < chessPicess.size(); i++) {
+                if (chessPicess.get(i).getX() == x2 && chessPicess.get(i).getY() == y2) {
+                    System.out.println("colors" + colorss);
+                    if (chessPicess.get(i).getColor().equals(colorss)) {
+                        System.out.println("color" + colorss);
+                        conts++;
+                        System.out.println("counts" + conts);
+                    }
+                }
+            }
+            if (conts == 0) {
+                continues = "yes";
+            }
+        }
+        return continues;
+    }
+
     public void move(String address , String colorChoice) {
         Scanner input = new Scanner(System.in);
         int x1;
@@ -270,121 +294,11 @@ public class Ground {
                             continues = checkBishop(x1,x2,y1,y2,colorss);
                             break;
                         case "Queen":
-                            int conts = 0;
-                            if ((dy == dx) || (dy == 0) || (dx == 0)) {
-                                if (dy == 0) {
-                                    conts = 0;
-                                    for (int w = Math.min(x1, x2) + 1; w < Math.max(x1, x2); w++) {
-                                        for (int r = 0; r < chessPicess.size(); r++) {
-                                            if (chessPicess.get(r).getX() == w && chessPicess.get(w).getY() == y1) {
-                                                conts++;
-                                            }
-                                        }
-                                    }
-                                    for (int i = 0; i < chessPicess.size(); i++) {
-                                        if (chessPicess.get(i).getX() == x2 && chessPicess.get(i).getY() == y2) {
-                                            if (chessPicess.get(i).getColor().equals(colorss)) {
-                                            } else {
-                                                conts++;
-                                            }
-                                        }
-                                    }
-                                    if (conts == 0) {
-                                        continues = "yes";
-                                    }
-                                }
-                                if (dx == 0) {
-                                    conts = 0;
-                                    for (int w = Math.min(y1, y2) + 1; w < Math.max(y1, y2); w++) {
-                                        for (int r = 0; r < chessPicess.size(); r++) {
-                                            if (chessPicess.get(r).getX() == x1 && chessPicess.get(w).getY() == w) {
-                                                conts++;
-                                            }
-                                        }
-                                    }
-                                    for (int i = 0; i < chessPicess.size(); i++) {
-                                        if (chessPicess.get(i).getX() == x2 && chessPicess.get(i).getY() == y2) {
-                                            if (chessPicess.get(i).getColor().equals(colorss)) {
-                                            } else {
-                                                conts++;
-                                            }
-                                        }
-                                    }
-                                    if (conts == 0) {
-                                        continues = "yes";
-                                    }
-                                }
-                                if (dx == dy) {
-                                    conts = 0;
-                                    t = Math.min(x1, x2) + 1;
-                                    for (int g = Math.min(y1, y2) + 1; g < Math.max(y1, y2); g++) {
-                                        for (int r = 0; r < chessPicess.size(); r++) {
-                                            if (chessPicess.get(r).getX() == t && chessPicess.get(r).getY() == g) {
-                                                conts++;
-                                            }
-                                        }
-                                    }
-                                    for (int i = 0; i < chessPicess.size(); i++) {
-                                        if (chessPicess.get(i).getX() == x2 && chessPicess.get(i).getY() == y2) {
-                                            if (chessPicess.get(i).getColor().equals(colorss)) {
-                                            } else {
-                                                conts++;
-                                            }
-                                        }
-                                    }
-                                    if (conts == 0) {
-                                        continues = "yes";
-                                    }
-                                }
-                            }
+                            continues = checkQueen(x1,x2,y1,y2,colorss);
 
                             break;
                         case "Knight":
-                            System.out.println("knight");
-                            conts = 0;
-                            if (dx != dy && ((dx == 1 && dy == 2) || (dx == 2 && dy == 1))) {
-                                for (int i = 0; i < chessPicess.size(); i++) {
-                                    if (chessPicess.get(i).getX() == x2 && chessPicess.get(i).getY() == y2) {
-                                        System.out.println("colors" + colorss);
-                                        if (chessPicess.get(i).getColor().equals(colorss)) {
-                                            System.out.println("color" + colorss);
-                                            conts++;
-                                            System.out.println("counts" + conts);
-                                        }
-                                    }
-                                }
-                                if (conts == 0) {
-                                    continues = "yes";
-                                }
-                            }
-                            System.out.println("continues" + continues);
-                            break;
-                        case "Pawn":
-                            System.out.println("pawn*****************");
-                            dy = y2 - y1;
-                            System.out.println("dy" + dy);
-                            System.out.println("con" + continues);
-                            if (chessPicess.get(j).getFirst().equals("no") && dx == 0 && (Math.abs(dy) == 1 || Math.abs(dy) == 2)) {
-                                if (chessPicess.get(j).getColor().equals("black") && (dy > 0)) {
-                                    continues = "yes";
-                                    System.out.println("continuess" + continues);
-                                    chessPicess.get(j).setFirst("yes");
-                                }
-                                if (chessPicess.get(j).getColor().equals("white") && (dy < 0)) {
-
-                                    continues = "yes";
-                                    System.out.println("contin" + continues);
-                                    chessPicess.get(j).setFirst("yes");
-                                }
-                            }
-                            if (chessPicess.get(j).getFirst().equals("yes") && dx == 0 && Math.abs(dy) == 1) {
-                                if (chessPicess.get(j).getColor().equals("black") && (dy < 0)) {
-                                    continues = "yes";
-                                }
-                                if (chessPicess.get(j).getColor().equals("white") && (dy > 0)) {
-                                    continues = "yes";
-                                }
-                            }
+                            continues = checkKnight(x1,x2,y1,y2,colorss);
                             break;
                         case "King":
                             if ((dx == 1 && dy == 0) || (dx == 0 && dy == 1) || (dy == dx && dy == 1)) {
