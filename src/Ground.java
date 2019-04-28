@@ -297,7 +297,15 @@ public class Ground {
                             break;
                         case "King":
                             if ((dx == 1 && dy == 0) || (dx == 0 && dy == 1) || (dy == dx && dy == 1)) {
-                                continues = "yes";
+                                for(int o=0;o<chessPicess.size();o++){
+                                    if(chessPicess.get(o).getX()==x2 && chessPicess.get(o).getY()==y2){
+                                        if(chessPicess.get(o).getColor().equals(colorChoice)){
+                                        }
+                                        else{
+                                            continues = "yes";
+                                        }
+                                    }
+                                }
                             }
                             break;
                     }
