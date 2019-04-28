@@ -39,9 +39,6 @@ public class King extends Pices {
         super.setChoices(x,y);
     }
 
-    public HashMap<Integer,Integer> getChoices(){
-        return super.getChoices();
-    }
 
 
 }
