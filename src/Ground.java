@@ -89,21 +89,148 @@ public class Ground {
                 dy = Math.abs(y2-y1);
                 continues= "no";
                 name = chessPicess.get(j).getName();
+                String colorss = chessPicess.get(j).getColor();
             System.out.println("name"+name+chessPicess.get(j).getY());
                 switch (name){
                     case "Rook":
+                        int cont;
+                        cont=0;
                         if(dx!=dy && (dx==0 || dy==0)){
-                            continues = "yes";
+                            dy = y2-y1;
+                            if((dx==0)){
+                                for(int e=0;e<chessPicess.size();e++){
+                                    for(int i=(Math.min(y1,y2))+1;i<Math.max(y1,y2);i++){
+                                        if(chessPicess.get(e).getX()==x1 && chessPicess.get(e).getY()==i){
+                                            cont++;
+                                        }
+                                    }
+                                }
+                                if(cont==0){
+                                    continues = "yes";
+                                }
+                            }
+                            cont =0;
+                            if((dy==0)) {
+                                for (int r = (Math.min(x1, x2) + 1); r < Math.max(x1, x2); r++) {
+                                    if(chessPicess.get(r).getX()==r && chessPicess.get(r).getY()==y1){
+                                        cont++;
+                                    }
+                                }
+                                if(cont==0){
+                                    continues="yes";
+                                }
+                            }
                         }
                         break;
 
                     case"Bishop":
+                        System.out.println("BIshop");
+                        int t=0;
+                        int conts =0;
                         if(dx==dy){
-                            continues = "yes";
+                            conts =0;
+                                for(int r=0;r<chessPicess.size();r++){
+                                    t = Math.min(y1,y2)+1;
+                                    for(int i=(Math.min(x1,x2)+1);i<Math.max(x1,x2);i++){
+                                        System.out.println("ooooooo");
+                                        if(chessPicess.get(r).getX()==i && chessPicess.get(r).getY()==t){
+                                            System.out.println("i"+i+"y"+t+"name"+chessPicess.get(r).getName());
+
+                                            if(chessPicess.get(r).getY()==y2 && chessPicess.get(r).getX()==x2){
+                                                    if(chessPicess.get(r).getColor().equals(colorss)){
+                                                        System.out.println("color"+chessPicess.get(r).getColor());
+                                                    }else{
+                                                        System.out.println("000000000000");
+                                                        conts++;
+                                                    }
+                                            }
+                                        }
+                                        t++;
+                                    }
+                                    if(chessPicess.get(r).getY()==y2 && chessPicess.get(r).getX()==x2){
+                                        if(chessPicess.get(r).getColor().equals(colorss)){
+                                            System.out.println("color"+chessPicess.get(r).getColor());
+                                        }else{
+                                            System.out.println("000000000000");
+                                            conts++;
+                                        }
+                                    }
+
+                                }
+                                if(conts==0){
+                                    continues = "yes";
+                                }
+                                conts=0;
                         }
                         break;
                     case "Queen":
-
+                        conts=0;
+                        if((dy==dx)|| (dy==0) || (dx==0)){
+                            if(dy==0){
+                                conts=0;
+                                for(int w=Math.min(x1,x2)+1;w<Math.max(x1,x2);w++){
+                                    for (int r=0;r<chessPicess.size();r++){
+                                        if(chessPicess.get(r).getX()== w && chessPicess.get(w).getY()==y1){
+                                            conts++;
+                                        }
+                                    }
+                                }
+                                for(int i=0;i<chessPicess.size();i++){
+                                    if(chessPicess.get(i).getX()==x2 && chessPicess.get(i).getY()==y2 ){
+                                        if(chessPicess.get(i).getColor().equals(colorss)) {
+                                        }else{
+                                            conts++;
+                                        }
+                                    }
+                                }
+                                if(conts==0){
+                                    continues = "yes";
+                                }
+                            }
+                            if(dx==0){
+                                conts=0;
+                                for(int w=Math.min(y1,y2)+1;w<Math.max(y1,y2);w++){
+                                    for (int r=0;r<chessPicess.size();r++){
+                                        if(chessPicess.get(r).getX()== x1 && chessPicess.get(w).getY()==w){
+                                            conts++;
+                                        }
+                                    }
+                                }
+                                for(int i=0;i<chessPicess.size();i++){
+                                    if(chessPicess.get(i).getX()==x2 && chessPicess.get(i).getY()==y2 ){
+                                        if(chessPicess.get(i).getColor().equals(colorss)) {
+                                        }else{
+                                            conts++;
+                                        }
+                                    }
+                                }
+                                if(conts==0){
+                                    continues = "yes";
+                                }
+                            }
+                            if(dx==dy){
+                                conts=0;
+                                t = Math.min(x1,x2)+1;
+                                for(int g=Math.min(y1,y2)+1;g<Math.max(y1,y2);g++){
+                                    for(int r=0;r<chessPicess.size();r++){
+                                        if(chessPicess.get(r).getX()==t && chessPicess.get(r).getY()==g){
+                                            conts++;
+                                        }
+                                    }
+                                }
+                                for(int i=0;i<chessPicess.size();i++){
+                                    if(chessPicess.get(i).getX()==x2 && chessPicess.get(i).getY()==y2 ){
+                                        if(chessPicess.get(i).getColor().equals(colorss)) {
+                                        }else{
+                                            conts++;
+                                        }
+                                    }
+                                }
+                                if(conts==0){
+                                    continues = "yes";
+                                }
+                            }
+                        }
 
                         break;
                     case "Knight":
@@ -182,9 +309,8 @@ public class Ground {
             System.out.println("black turn");
             voroodii = input.next();
             move(voroodii);
-
             display();
-            finish = "yes";
+            //finish = "yes";
         }
     }
 
