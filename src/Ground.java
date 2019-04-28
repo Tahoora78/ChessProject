@@ -41,10 +41,7 @@ public class Ground {
                 chessPicess.add(new Pawn(y.get(r),7,"white"));
                 r++;
             }
-        System.out.println("size::::"+chessPicess.size());
         System.out.println(chessPicess.get(0).getName()+"  "+chessPicess.get(31).getName()+"x:"+chessPicess.get(31).getX()+"y:"+chessPicess.get(31).getY()+"color"+chessPicess.get(31).getColor());
-           // chessPicess.add(new King(y.get(0),7,"black"));
-            //chessPicess.add(new King(y.get(0),2,"black"));
     }
 
     public void display(){
@@ -69,6 +66,44 @@ public class Ground {
             System.out.println();
         }
     }
+
+    public String checkRook(int x1,int x2,int y1,int y2){
+        int cont;
+        cont = 0;
+        String continues = "no";
+        int dx = Math.abs(x2-x1);
+        int dy = Math.abs(y2-y1);
+        if (dx != dy && (dx == 0 || dy == 0)) {
+            continues = "no";
+            dy = y2 - y1;
+            if ((dx == 0)) {
+                for (int e = 0; e < chessPicess.size(); e++) {
+                    for (int i = (Math.min(y1, y2)) + 1; i < Math.max(y1, y2); i++) {
+                        if (chessPicess.get(e).getX() == x1 && chessPicess.get(e).getY() == i) {
+                            cont++;
+                        }
+                    }
+                }
+                if (cont == 0) {
+                    continues = "yes";
+                }
+            }
+            cont = 0;
+            if ((dy == 0)) {
+                for (int r = (Math.min(x1, x2) + 1); r < Math.max(x1, x2); r++) {
+                    if (chessPicess.get(r).getX() == r && chessPicess.get(r).getY() == y1) {
+                        cont++;
+                    }
+                }
+                if (cont == 0) {
+                    continues = "yes";
+                }
+            }
+        }
+        return continues;
+    }
+
+   // public String checkBishop(int )
 
     public void move(String address , String colorChoice) {
         Scanner input = new Scanner(System.in);
@@ -108,34 +143,7 @@ public class Ground {
                     System.out.println("name" + name + chessPicess.get(j).getY());
                     switch (name) {
                         case "Rook":
-                            int cont;
-                            cont = 0;
-                            if (dx != dy && (dx == 0 || dy == 0)) {
-                                dy = y2 - y1;
-                                if ((dx == 0)) {
-                                    for (int e = 0; e < chessPicess.size(); e++) {
-                                        for (int i = (Math.min(y1, y2)) + 1; i < Math.max(y1, y2); i++) {
-                                            if (chessPicess.get(e).getX() == x1 && chessPicess.get(e).getY() == i) {
-                                                cont++;
-                                            }
-                                        }
-                                    }
-                                    if (cont == 0) {
-                                        continues = "yes";
-                                    }
-                                }
-                                cont = 0;
-                                if ((dy == 0)) {
-                                    for (int r = (Math.min(x1, x2) + 1); r < Math.max(x1, x2); r++) {
-                                        if (chessPicess.get(r).getX() == r && chessPicess.get(r).getY() == y1) {
-                                            cont++;
-                                        }
-                                    }
-                                    if (cont == 0) {
-                                        continues = "yes";
-                                    }
-                                }
-                            }
+                            checkRook(x1,x2,y1,y2);
                             break;
 
                         case "Bishop":

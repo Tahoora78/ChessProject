@@ -1,9 +1,21 @@
+import java.util.ArrayList;
+import java.util.HashMap;
+
 public abstract class Pices {
     int  x;
     private int y;
     private String color;
     private String name;
     private String first = "no";
+    HashMap<Integer,Integer> choices = new HashMap<>();
+
+    public void setChoices(int x,int y){
+        choices.put(x,y);
+    }
+
+    public HashMap<Integer,Integer> getChoices(){
+        return choices;
+    }
     public enum xChar{
         z,
         a,

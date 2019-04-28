@@ -1,3 +1,5 @@
+import java.util.HashMap;
+
 public class Pawn extends Pices {
     private String name = "Pawn";
     private String first = "no";
@@ -41,6 +43,14 @@ public class Pawn extends Pices {
 
     public String getColor(){
         return super.getColor();
+    }
+
+    public void setChoices(int x,int y){
+        super.setChoices(x,y);
+    }
+
+    public HashMap<Integer,Integer> getChoices(){
+        return super.getChoices();
     }
 
 }
