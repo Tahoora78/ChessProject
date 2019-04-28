@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class Ground {
@@ -376,7 +377,6 @@ public class Ground {
             }
 
             for (int i = 0; i < chessPicess.size(); i++) {
-                // System.out.println("x:"+chessPicess.get(i).getX()+"x1:"+x1+"y:"+chessPicess.get(i).getY()+"y1:"+y1+"con"+continues.equals("yes"));
                 if (chessPicess.get(i).getX() == x1 && chessPicess.get(i).getY() == y1 && continues.equals("yes")) {
                     chessPicess.get(i).setX(address.charAt(3));
                     System.out.println("**************************************");
@@ -385,6 +385,150 @@ public class Ground {
                     break;
                 }
             }
+    }
+
+
+    public void makingPicessChoices(){
+        int t;
+        int x1=0;
+        int y1=0;
+        String result;
+        String type = null;
+        String colors = null;
+        for(Pices ui:chessPicess){
+                x1 = ui.getX();
+                y1 = ui.getY();
+            t=1;
+            for(int y=0;y<chessPicess.size();y++){
+                if(chessPicess.get(y).getX()==x1 && chessPicess.get(y).getY()==y1){
+                    type = chessPicess.get(y).getName();
+                    colors = chessPicess.get(y).getColor();
+                    break;
+                }
+            }
+            switch (type){
+                case "Pawn":
+                    t=1;
+                    for(int u=1;u<=8;u++){
+                        result = checkPawn(x1,y1,t,u);
+                        if(result.equals("yes")){
+                            for(int y=0;y<chessPicess.size();y++){
+                                if(chessPicess.get(y).getX()==x1 && chessPicess.get(y).getY()==y1){
+                                    chessPicess.get(y).setChoices(t,u);
+                                    break;
+                                }
+                            }
+                        }
+                        t++;
+                    }
+
+                    break;
+                case "Rook":
+                    t=1;
+                    for(int u=1;u<=8;u++){
+                        result = checkRook(x1,y1,t,u);
+                        if(result.equals("yes")){
+                            for(int y=0;y<chessPicess.size();y++){
+                                if(chessPicess.get(y).getX()==x1 && chessPicess.get(y).getY()==y1){
+                                    chessPicess.get(y).setChoices(t,u);
+                                    break;
+                                }
+                            }
+                        }
+                        t++;
+                    }
+
+                    break;
+                case "Knight":
+                        t=1;
+                    for(int u=1;u<=8;u++){
+                        result = checkKnight(x1,y1,t,u,colors);
+                        if(result.equals("yes")){
+                            for(int y=0;y<chessPicess.size();y++){
+                                if(chessPicess.get(y).getX()==x1 && chessPicess.get(y).getY()==y1){
+                                    chessPicess.get(y).setChoices(t,u);
+                                    break;
+                                }
+                            }
+                        }
+                        t++;
+                    }
+                        break;
+                case "Bishop":
+                    t=1;
+                    for(int u=1;u<=8;u++){
+                        result = checkBishop(x1,y1,t,u,colors);
+                        if(result.equals("yes")){
+                            for(int y=0;y<chessPicess.size();y++){
+                                if(chessPicess.get(y).getX()==x1 && chessPicess.get(y).getY()==y1){
+                                    chessPicess.get(y).setChoices(t,u);
+                                    break;
+                                }
+                            }
+                        }
+                        t++;
+                    }
+
+                    break;
+                case "Queen":
+                    t=1;
+                    for(int u=1;u<=8;u++){
+                        result = checkQueen(x1,y1,t,u,colors);
+                        if(result.equals("yes")){
+                            for(int y=0;y<chessPicess.size();y++){
+                                if(chessPicess.get(y).getX()==x1 && chessPicess.get(y).getY()==y1){
+                                    chessPicess.get(y).setChoices(t,u);
+                                    break;
+                                }
+                            }
+                        }
+                        t++;
+                    }
+
+                    break;
+                case"King":
+                    t=1;
+                    for(int u=1;u<=8;u++){
+                        result = checkKing(x1,y1,t,u,colors);
+                        if(result.equals("yes")){
+                            for(int y=0;y<chessPicess.size();y++){
+                                if(chessPicess.get(y).getX()==x1 && chessPicess.get(y).getY()==y1){
+                                    chessPicess.get(y).setChoices(t,u);
+                                    break;
+                                }
+                            }
+                        }
+                        t++;
+                    }
+
+                    break;
+            }
+        }
+    }
+
+    public void checkKingChoice(int x1,int y1){
+        int t=1;
+
+        for(int y=0;y<chessPicess.size();y++){
+            if(chessPicess.get(y).getX()==x1 && chessPicess.get(y).getY()==y1){
+                t=y;
+                break;
+            }
+        }
+        int y2=0;
+
+        for(int o=0;o<chessPicess.get(t).getXChoice().size();o++) {
+            for(int r=0;r<chessPicess.get(t).getyChoice().size();r++) {
+                for(Pices p:chessPicess){
+                    for(int x2: p.getXChoice()){
+                        if(x2==chessPicess.get(t).getXChoice().get(o) && chessPicess.get(t).getyChoice().get(r)==p.getyChoice().get(y2) ){
+                            chessPicess.get(t).getXChoice().remove(o);
+                            chessPicess.get(t).getyChoice().remove(r);
+                        }
+                    }
+                }
+            }
+        }
     }
 
     public void moving(){

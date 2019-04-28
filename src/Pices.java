@@ -8,14 +8,26 @@ public abstract class Pices {
     private String name;
     private String first = "no";
     HashMap<Integer,Integer> choices = new HashMap<>();
+    ArrayList<Integer> xChoice = new ArrayList<>();
+    ArrayList<Integer> yChoice = new ArrayList<>();
 
     public void setChoices(int x,int y){
-        choices.put(x,y);
+        xChoice.add(x);
+        yChoice.add(y);
     }
 
-    public HashMap<Integer,Integer> getChoices(){
-        return choices;
+    public int getSizeOfChoices(){
+        return xChoice.size();
     }
+
+    public ArrayList<Integer> getXChoice(){
+        return xChoice;
+    }
+
+    public ArrayList<Integer> getyChoice(){
+        return yChoice;
+    }
+
     public enum xChar{
         z,
         a,
