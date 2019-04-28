@@ -103,7 +103,127 @@ public class Ground {
         return continues;
     }
 
-   // public String checkBishop(int )
+    public String checkBishop(int x1,int x2,int y1,int y2,String colorss){
+        int t = 0;
+        int dx = Math.abs(x2-x1);
+        int dy = Math.abs(y2-y1);
+        int conts = 0;
+        String continues = "no";
+        if (dx == dy) {
+            continues = "no";
+            conts = 0;
+            for (int r = 0; r < chessPicess.size(); r++) {
+                t = Math.min(y1, y2) + 1;
+                for (int i = (Math.min(x1, x2) + 1); i < Math.max(x1, x2); i++) {
+                    System.out.println("ooooooo");
+                    if (chessPicess.get(r).getX() == i && chessPicess.get(r).getY() == t) {
+                        System.out.println("i" + i + "y" + t + "name" + chessPicess.get(r).getName());
+
+                        if (chessPicess.get(r).getY() == y2 && chessPicess.get(r).getX() == x2) {
+                            if (chessPicess.get(r).getColor().equals(colorss)) {
+                                System.out.println("color" + chessPicess.get(r).getColor());
+                            } else {
+                                System.out.println("000000000000");
+                                conts++;
+                            }
+                        }
+                    }
+                    t++;
+                }
+                if (chessPicess.get(r).getY() == y2 && chessPicess.get(r).getX() == x2) {
+                    if (chessPicess.get(r).getColor().equals(colorss)) {
+                        System.out.println("color" + chessPicess.get(r).getColor());
+                    } else {
+                        System.out.println("000000000000");
+                        conts++;
+                    }
+                }
+
+            }
+            if (conts == 0) {
+                continues = "yes";
+            }
+            conts = 0;
+        }
+        return continues;
+    }
+
+    public String checkQueen(int x1,int x2,int y1,int y2,String colorss){
+        int dx = Math.abs(x2-x1);
+        int dy = Math.abs(y2-y1);
+        int conts = 0;
+        String continues = "no";
+
+        if ((dy == dx) || (dy == 0) || (dx == 0)) {
+            continues = "no";
+            if (dy == 0) {
+                conts = 0;
+                for (int w = Math.min(x1, x2) + 1; w < Math.max(x1, x2); w++) {
+                    for (int r = 0; r < chessPicess.size(); r++) {
+                        if (chessPicess.get(r).getX() == w && chessPicess.get(w).getY() == y1) {
+                            conts++;
+                        }
+                    }
+                }
+                for (int i = 0; i < chessPicess.size(); i++) {
+                    if (chessPicess.get(i).getX() == x2 && chessPicess.get(i).getY() == y2) {
+                        if (chessPicess.get(i).getColor().equals(colorss)) {
+                        } else {
+                            conts++;
+                        }
+                    }
+                }
+                if (conts == 0) {
+                    continues = "yes";
+                }
+            }
+            if (dx == 0) {
+                conts = 0;
+                for (int w = Math.min(y1, y2) + 1; w < Math.max(y1, y2); w++) {
+                    for (int r = 0; r < chessPicess.size(); r++) {
+                        if (chessPicess.get(r).getX() == x1 && chessPicess.get(w).getY() == w) {
+                            conts++;
+                        }
+                    }
+                }
+                for (int i = 0; i < chessPicess.size(); i++) {
+                    if (chessPicess.get(i).getX() == x2 && chessPicess.get(i).getY() == y2) {
+                        if (chessPicess.get(i).getColor().equals(colorss)) {
+                        } else {
+                            conts++;
+                        }
+                    }
+                }
+                if (conts == 0) {
+                    continues = "yes";
+                }
+            }
+            if (dx == dy) {
+                conts = 0;
+                int t =0;
+                t = Math.min(x1, x2) + 1;
+                for (int g = Math.min(y1, y2) + 1; g < Math.max(y1, y2); g++) {
+                    for (int r = 0; r < chessPicess.size(); r++) {
+                        if (chessPicess.get(r).getX() == t && chessPicess.get(r).getY() == g) {
+                            conts++;
+                        }
+                    }
+                }
+                for (int i = 0; i < chessPicess.size(); i++) {
+                    if (chessPicess.get(i).getX() == x2 && chessPicess.get(i).getY() == y2) {
+                        if (chessPicess.get(i).getColor().equals(colorss)) {
+                        } else {
+                            conts++;
+                        }
+                    }
+                }
+                if (conts == 0) {
+                    continues = "yes";
+                }
+            }
+        }
+        return continues;
+    }
 
     public void move(String address , String colorChoice) {
         Scanner input = new Scanner(System.in);
@@ -143,51 +263,14 @@ public class Ground {
                     System.out.println("name" + name + chessPicess.get(j).getY());
                     switch (name) {
                         case "Rook":
-                            checkRook(x1,x2,y1,y2);
+                            continues = checkRook(x1,x2,y1,y2);
                             break;
 
                         case "Bishop":
-                            System.out.println("BIshop");
-                            int t = 0;
-                            int conts = 0;
-                            if (dx == dy) {
-                                conts = 0;
-                                for (int r = 0; r < chessPicess.size(); r++) {
-                                    t = Math.min(y1, y2) + 1;
-                                    for (int i = (Math.min(x1, x2) + 1); i < Math.max(x1, x2); i++) {
-                                        System.out.println("ooooooo");
-                                        if (chessPicess.get(r).getX() == i && chessPicess.get(r).getY() == t) {
-                                            System.out.println("i" + i + "y" + t + "name" + chessPicess.get(r).getName());
-
-                                            if (chessPicess.get(r).getY() == y2 && chessPicess.get(r).getX() == x2) {
-                                                if (chessPicess.get(r).getColor().equals(colorss)) {
-                                                    System.out.println("color" + chessPicess.get(r).getColor());
-                                                } else {
-                                                    System.out.println("000000000000");
-                                                    conts++;
-                                                }
-                                            }
-                                        }
-                                        t++;
-                                    }
-                                    if (chessPicess.get(r).getY() == y2 && chessPicess.get(r).getX() == x2) {
-                                        if (chessPicess.get(r).getColor().equals(colorss)) {
-                                            System.out.println("color" + chessPicess.get(r).getColor());
-                                        } else {
-                                            System.out.println("000000000000");
-                                            conts++;
-                                        }
-                                    }
-
-                                }
-                                if (conts == 0) {
-                                    continues = "yes";
-                                }
-                                conts = 0;
-                            }
+                            continues = checkBishop(x1,x2,y1,y2,colorss);
                             break;
                         case "Queen":
-                            conts = 0;
+                            int conts = 0;
                             if ((dy == dx) || (dy == 0) || (dx == 0)) {
                                 if (dy == 0) {
                                     conts = 0;
