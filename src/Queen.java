@@ -1,14 +1,17 @@
 import java.util.HashMap;
 
+/**
+ * used for defining the features of queen piece
+ * Tahoora Majlesi
+ */
 public class Queen extends Pices {
     private String name = "Queen";
 
-    public Queen(Character d,int r,String o){
+    public Queen(int d,int r,String o){
         super.setX(d);
         super.setY(r);
         super.setColor(o);
     }
-
     public void setX(char t){
         super.setX(t);
     }
@@ -18,8 +21,8 @@ public class Queen extends Pices {
     }
 
     @Override
-    public void move(Character xe, int u) {
-        super.move(xe, u);
+    public void move(Character x, int u) {
+        super.move(x, u);
     }
 
     public void setColor(String colors){
@@ -35,9 +38,9 @@ public class Queen extends Pices {
         return super.getColor();
     }
 
-    public void setChoices(int x,int y){
-        super.setChoices(x,y);
-    }
+   // public void setChoices(int x,int y){
+     //   super.setChoices(x,y);
+    //}
 
 
 

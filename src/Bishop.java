@@ -1,3 +1,7 @@
+/**
+ * used for defining the features and methods of bishop piece
+ * Tahoora Majlesi
+ */
 public class Bishop extends Pices {
     private int num;
     private String name = "Bishop";
@@ -7,11 +11,10 @@ public class Bishop extends Pices {
         return name;
     }
 
-    public Bishop(Character s,int u,String d,int y){
+    public Bishop(int s,int u,String d){
         super.setX(s);
         super.setY(u);
         super.setColor(d);
-        num = y;
     }
 
     public void setX(char t){

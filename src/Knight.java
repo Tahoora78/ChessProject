@@ -1,5 +1,9 @@
 import java.util.HashMap;
 
+/**
+ * used for defining the features and methods of knight piece
+ * Tahoora Majlesi
+ */
 public class Knight extends Pices {
     private int num;
     private String name = "Knight";
@@ -9,7 +13,7 @@ public class Knight extends Pices {
         return name;
     }
 
-    public Knight(Character d,int r,String f,int y){
+    public Knight(int d,int r,String f,int y){
         super.setX(d);
         super.setY(r);
         super.setColor(f);
@@ -38,9 +42,9 @@ public class Knight extends Pices {
     }
 
 
-    public void setChoices(int x,int y){
-        super.setChoices(x,y);
-    }
+  //  public void setChoices(int x,int y){
+    //    super.setChoices(x,y);
+    //}
 
 
 

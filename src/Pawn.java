@@ -3,6 +3,7 @@ import java.util.HashMap;
 public class Pawn extends Pices {
     private String name = "Pawn";
     private String first = "no";
+
     @Override
     public String getFirst(){
         return first;
@@ -12,10 +13,10 @@ public class Pawn extends Pices {
         first = y;
     }
 
-    public Pawn(Character g,int r,String d){
-        super.setX(g);
-        super.setY(r);
-        super.setColor(d);
+    public Pawn(int x,int y,String color){
+        super.setX(x);
+        super.setY(y);
+        super.setColor(color);
 
     }
 
@@ -45,9 +46,9 @@ public class Pawn extends Pices {
         return super.getColor();
     }
 
-    public void setChoices(int x,int y){
-        super.setChoices(x,y);
-    }
+  //  public void setChoices(int x,int y){
+    //    super.setChoices(x,y);
+    //}
 
 
 

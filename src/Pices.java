@@ -1,32 +1,58 @@
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * this class is used for difining the features of the pices
+ * Tahoora majlesi
+ */
 public abstract class Pices {
-    int  x;
+    private int  x;
     private int y;
     private String color;
     private String name;
     private String first = "no";
-    HashMap<Integer,Integer> choices = new HashMap<>();
-    ArrayList<Integer> xChoice = new ArrayList<>();
-    ArrayList<Integer> yChoice = new ArrayList<>();
+    private int number=0;
+    private
+    //HashMap<Integer,Integer> choices = new HashMap<>();
+    // ArrayList<Integer> xChoice = new ArrayList<>();
+    HashMap<Integer,Integer> choice = new HashMap<>();
+    Integer[] xChoice = new Integer[64];
+    Integer[] yChoice = new Integer[64];
+    /**
+     * @param x get the x and set it
+     * @param y get y and set it
+     */
 
-    public void setChoices(int x,int y){
-        xChoice.add(x);
-        yChoice.add(y);
+    public void setChoices(int x,int y,int i){
+        xChoice[i]=x;
+        yChoice[i]=y;
+        number++;
+        System.out.println("x:"+x+" y:"+y);
+        System.out.println("*****************");
     }
-
-    public int getSizeOfChoices(){
-        return xChoice.size();
-    }
-
-    public ArrayList<Integer> getXChoice(){
+    public Integer[] getxChoice(){
         return xChoice;
     }
-
-    public ArrayList<Integer> getyChoice(){
+    public Integer[] getyChoice(){
         return yChoice;
     }
+
+    public int getNumber(){
+        return number;
+    }
+    /**
+     *
+     * @return the size
+     */
+    public int getSizeOfChoices(){
+        return number;
+    }
+
+    public HashMap<Integer,Integer> getChoice(){
+        return choice;
+    }
+
+
 
     public enum xChar{
         z,
@@ -40,10 +66,24 @@ public abstract class Pices {
         h
     }
 
+    /**
+     *
+     * @param c return the color of the piece
+     */
     public void setColor(String c){
         color = c;
     }
 
+    /**
+     * change the a to g to integer
+     * @param z the parameter to change
+     * @return the integer which is changed
+     */
+
+    public void setX(int z){
+        x = z;
+    }
+    /*
     public int setX(Character z){
         switch (z){
             case('a'):
@@ -71,9 +111,10 @@ public abstract class Pices {
                 x = xChar.h.ordinal();
                 break;
         }
+        //System.out.println("X::"+x);
         return x;
     }
-
+*/
 
     public abstract String getName();
 
@@ -89,8 +130,13 @@ public abstract class Pices {
         first = y;
     }
 
-    public void move(Character xe,int u){
-        setX(xe);
+    /**
+     * used for moving the pieces
+     * @param x get the x of piece
+     * @param u get the y of piece
+     */
+    public void move(Character x,int u){
+        setX(x);
         y = u;
     }
 

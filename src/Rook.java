@@ -1,5 +1,9 @@
 import java.util.HashMap;
 
+/**
+ * used for defining the features and methods of rook piece
+ * Tahoora Majlesi
+ */
 public class Rook extends Pices {
     private int num;
     private String name = "Rook";
@@ -9,7 +13,7 @@ public class Rook extends Pices {
         return name;
     }
 
-    public Rook(Character e,int u,String h,int i){
+    public Rook(int e,int u,String h,int i){
         super.setX(e);
         super.setY(u);
         super.setColor(h);
@@ -36,9 +40,9 @@ public class Rook extends Pices {
     public String getColor(){
         return super.getColor();
     }
-    public void setChoices(int x,int y){
-        super.setChoices(x,y);
-    }
+   // public void setChoices(int x,int y){
+   //     super.setChoices(x,y);
+   // }
 
 
 

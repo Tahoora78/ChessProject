@@ -1,5 +1,9 @@
 import java.util.HashMap;
 
+/**
+ * used for defining the features and methods of king piece
+ * Tahoora Majlesi
+ */
 public class King extends Pices {
     public String name = "King";
 
@@ -8,7 +12,7 @@ public class King extends Pices {
         return name;
     }
 
-    public King(Character d,int r,String g){
+    public King(int d,int r,String g){
         super.setX(d);
         super.setY(r);
         super.setColor(g);
@@ -35,9 +39,9 @@ public class King extends Pices {
         return super.getColor();
     }
 
-    public void setChoices(int x,int y){
-        super.setChoices(x,y);
-    }
+   // public void setChoices(int x,int y){
+    //    super.setChoices(x,y);
+    //}
 
 
 
