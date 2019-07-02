@@ -11,6 +11,15 @@ public class Square extends JButton {
     Pices p;
     Ground ground;
     String image;
+    Boolean mouseClicked;
+
+    public void setMouseClicked(boolean bool){
+        mouseClicked = bool;
+    }
+
+    public boolean getMouseclicked(){
+        return mouseClicked;
+    }
 
     public Square(int x,int y,Ground ground){
         this.x = x;

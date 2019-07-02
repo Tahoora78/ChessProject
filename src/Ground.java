@@ -11,11 +11,19 @@ public class Ground {
     private String x;
     private int y;
     private String turnPiece = "white";
+    private boolean start = false;
     ArrayList<String> deletedBlackChess= new ArrayList<>();
     ArrayList<String> getDeletedWhiteChess = new ArrayList<>();
     ArrayList<Pices> chessPicess = new ArrayList<>();
     private Square currentSquare;
 
+    public void setStart(boolean start){
+        this.start = start;
+    }
+
+    public boolean getStart(){
+        return start;
+    }
     public void setCurrentSquare(Square square){
         currentSquare = square;
     }
