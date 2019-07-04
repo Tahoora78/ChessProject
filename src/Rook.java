@@ -13,6 +13,7 @@ public class Rook extends Pices {
         return name;
     }
 
+
     public Rook(int e,int u,String h,int i){
         super.setX(e);
         super.setY(u);

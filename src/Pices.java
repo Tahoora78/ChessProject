@@ -101,6 +101,7 @@ public abstract class Pices {
             case('e'):
                 x = xChar.e.ordinal();
                 break;
+
             case('f'):
                 x = xChar.f.ordinal();
                 break;

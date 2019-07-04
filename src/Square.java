@@ -71,6 +71,7 @@ public class Square extends JButton {
         this.color = p.getColor();
     }
 
+
     public String getImage(){
         return image;
     }
@@ -82,6 +83,7 @@ public class Square extends JButton {
     public Pices getPiece(){
         return p;
     }
+
 
     public String getColor(){
         return color;

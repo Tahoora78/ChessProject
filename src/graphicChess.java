@@ -159,6 +159,7 @@ public class graphicChess extends JButton{
             for(int j=0;j<8;j++){
                 squares[i][j].addActionListener(new ActionListener(){
                     @Override
+
                     public void actionPerformed(ActionEvent e) {
 
                     }

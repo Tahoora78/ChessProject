@@ -9,6 +9,7 @@ import java.util.Scanner;
  */
 public class Ground {
     private String x;
+
     private int y;
     private String turnPiece = "white";
     private boolean start = false;

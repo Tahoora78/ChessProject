@@ -22,6 +22,7 @@ public class MouseDemo implements MouseListener {
             if(ground.getTurnPiece().equals(s.getColor())) {
             if(s.color.equals("black")){
                // ground.setTurnPiece("white");
+
             }if(s.color.equals("white")){
                // ground.setTurnPiece("black");
             }

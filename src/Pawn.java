@@ -4,6 +4,7 @@ public class Pawn extends Pices {
     private String name = "Pawn";
     private String first = "no";
 
+
     @Override
     public String getFirst(){
         return first;

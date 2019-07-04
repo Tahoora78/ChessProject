@@ -2,6 +2,7 @@
  * used for defining the features and methods of bishop piece
  * Tahoora Majlesi
  */
+
 public class Bishop extends Pices {
     private int num;
     private String name = "Bishop";
