@@ -123,6 +123,7 @@ public abstract class Pices {
         y = u;
     }
 
+
     public String getFirst(){
         return first;
     }
