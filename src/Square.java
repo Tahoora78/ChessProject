@@ -9,6 +9,7 @@ public class Square extends JButton {
     private int y;
     String color;
     Pices p;
+
     Ground ground;
     String image;
     Boolean mouseClicked;
