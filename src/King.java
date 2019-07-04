@@ -13,7 +13,6 @@ public class King extends Pices {
     }
 
     public King(int d,int r,String g){
-
         super.setX(d);
         super.setY(r);
         super.setColor(g);
