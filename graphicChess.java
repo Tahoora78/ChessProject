@@ -12,6 +12,17 @@ public class graphicChess extends JButton{
     private Square[][] squares = new Square[8][8];
     private String turnPiece = "white";
     public Ground ground;
+    public static Square previousSquare;
+    public static int exist = 0;
+    public static String turnColor = "white";
+    public void setPreviousSquare(Square s){
+        previousSquare = s;
+        exist=1;
+    }
+
+    public Square getPreviousSquare(){
+        return previousSquare;
+    }
     /*
     public String getTurnPiece() {
         return turnPiece;

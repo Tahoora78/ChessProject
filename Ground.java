@@ -379,7 +379,7 @@ public class Ground {
             if(chessPicess.get(t).getColor().equals("black") && (dy>0)){
                 continues = "yes";
             }
-            if(chessPicess.get(t).getColor().equals("white") && (dy<0)) {
+            if(chessPicess.get(t).getColor().equals("white") && (dy>0)) {
                 continues = "yes";
             }
         }
